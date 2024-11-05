@@ -6,7 +6,9 @@ from pywebio import *
 from pywebio.input import *
 from pywebio.output import *
 
-
+put_html('<h1 style="text-align: center">Data Creator</h1>')
+put_html('<p style="text-align: center">This program will create a data file with random names, emails, addresses, and phone numbers.</p>')
+put_html('<p style="text-align: center">Please enter a number between 1-1000 to create the data file.</p>')
 def main():
 	
 	
