@@ -2,15 +2,26 @@ import sys
 import random
 import csv_writer_module
 import json_writer_module
+import time
 from pywebio import *
 from pywebio.input import *
 from pywebio.output import *
+from pywebio.session import set_env
 
-put_html('<h1 style="text-align: center">Data Creator</h1>')
-put_html('<p style="text-align: center">This program will create a data file with random names, emails, addresses, and phone numbers.</p>')
-put_html('<p style="text-align: center">Please enter a number between 1-1000 to create the data file.</p>')
+## flask code ##
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+
+
+
 def main():
-	
+	set_env(title="Data Creator", output_animation=False)
+	put_html('<h1 style="text-align: center">Data Creator</h1>')
+	put_html('<p style="text-align: center">This program will create a data file with random names, emails, addresses, and phone numbers.</p>')
+	put_html('<p style="text-align: center">Please enter a number between 1-1000 to create the data file.</p>')
 	
 	def openAllFiles():#read files
 		female_done = open('female.txt', 'r')
@@ -133,12 +144,19 @@ def main():
 			csv_writer_module.csv_run()
 			#popup('Please find your data in "data.csv" in your current directory.')
 			content=open('./data.csv', 'rb').read()
-			put_file('data.csv', content, 'Please download the your data')
-					
+			put_column([
+				put_row([
+					put_file('data.csv', content, 'Please download the your data')
+				], size="100%"),
+			], size="auto")
 		elif(answer == '2'):
 			json_writer_module.json_run()
 			content=open('./data.json', 'rb').read()
-			put_file('data.json', content, 'Please download the your data')
+			put_column([
+				put_row([
+					put_file('data.json', content, 'Please download the your data')
+				], size="100%"),
+			], size="auto")
 		else:
 			printData()
 
@@ -178,7 +196,10 @@ def main():
 	closeAllFiles(gfd, gmd, gp, gs, gd)
 
 	printData()
-
+	time.sleep(1)
+	popup('Data collection finished', 'Please download your data file')
+	put_html("<div style='text-align: center'><p>Thank you for using the Data Creator!</p> <p>Author: John Verber</p><p>Copyright 2024 © John Verber</p></div>") 	
+	
 if __name__== "__main__":
 	main()
 
