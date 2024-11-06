@@ -20,8 +20,8 @@ app = Flask(__name__)
 def main():
 	set_env(title="Data Creator", output_animation=False)
 	put_html('<h1 style="text-align: center">Data Creator</h1>')
-	put_html('<p style="text-align: center">This program will create a data file with random names, emails, addresses, and phone numbers.</p>')
-	put_html('<p style="text-align: center">Please enter a number between 1-1000 to create the data file.</p>')
+	put_html('<p">This program will create a data file with random names, emails, addresses, and phone numbers.</p>')
+	put_html('<p">Please enter a number between 1-1000 to create the data file.</p>')
 	
 	def openAllFiles():#read files
 		female_done = open('female.txt', 'r')
@@ -198,7 +198,7 @@ def main():
 	printData()
 	time.sleep(1)
 	popup('Data collection finished', 'Please download your data file')
-	put_html("<div style='text-align: center'><p>Thank you for using the Data Creator!</p> <p>Author: John Verber</p><p>Copyright 2024 © John Verber</p></div>") 	
+	put_html("<p style='margin-top: 150px'>Thank you for using the Data Creator!</p> <p>Author: John Verber</p><p>Copyright 2024 © John Verber</p>") 	
 	
 if __name__== "__main__":
 	main()
